@@ -1,6 +1,6 @@
 # Namux 
 
-## The "Namux" script simplifies the setup of a productive environment within a Tmux session. It's designed for streamlined web browsing and network security tasks, providing easy access to essential tools like Firefox, a Work Panel, and Burp Suite.
+## The "Namux" script simplifies the setup of a productive environment within a Tmux session. It's designed for providing easy access to essential tools which are Firefox, a Work Panel, and Burp Suite in one command.
 
 ### Edit the script as prefered and adjust the path of the vpn or the number of vpns.
 
