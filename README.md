@@ -7,6 +7,16 @@
 Download it using git
 
 ```bash
+git clone https://github.com/Jolicious/Namux.git
+```
+
+Give executable permission
+```bash
+chmod +x namux
+```
+
+Move the file to `/usr/local/bin/`
+```bash
 mv namux /usr/local/bin/
 ```
 
