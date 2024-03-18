@@ -1,0 +1,46 @@
+#!/bin/bash
+
+setup_tmux_windows() {
+    local session_name=$1
+
+    # Close the empty window
+    tmux kill-window -t "${session_name}:0"
+
+    # Create a window named "Firefox"
+    tmux new-window -t "${session_name}:0" -n "Firefox" "firefox"
+
+    # Create a window named "Work Panel"
+    tmux new-window -t "${session_name}:2" -n "Work Panel"
+
+    # Create a window named "Burpsuite"
+    tmux new-window -t "${session_name}:3" -n "Burpsuite" "burpsuite"
+
+    # Select the "Work Panel" window
+    tmux select-window -t "${session_name}:2"
+}
+
+# Start a new tmux session named "my_session"
+tmux new-session -d -s my_session
+
+# Check the provided argument for VPN configuration
+if [[ $1 == "vpn1" ]]; then
+    # Create a window named "VPN" and start VPN configuration 1
+    tmux new-window -t my_session:1 -n "VPN" "cd; sudo openvpn /path/to/vpn1/config.ovpn"
+    setup_tmux_windows "my_session"
+    tmux attach-session -t my_session
+
+elif [[ $1 == "vpn2" ]]; then
+    # Create a window named "VPN" and start VPN configuration 2
+    tmux new-window -t my_session:1 -n "VPN" "cd; sudo openvpn /path/to/vpn2/config.ovpn"
+    setup_tmux_windows "my_session"
+    tmux attach-session -t my_session
+
+else
+    tmux new-window -t my_session:5 -n "Empty"
+    setup_tmux_windows "my_session"
+    tmux kill-window -t "my_session:5"
+    tmux attach-session -t my_session
+fi
+
+# Attach to the session
+# tmux attach-session -t my_session
